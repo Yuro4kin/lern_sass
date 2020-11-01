@@ -1,0 +1,133 @@
+.test {
+	text-align:center;
+}
+/* Вложенность - без препроцессора*/
+.menu {
+	float:right;
+}
+.menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.menu li {
+	display: inline-block;
+}
+.menu a {
+	text-decoration: none;
+}
+/* Вложенность - с препроцессором*/
+ .menu {
+ 	float: right;
+ 	ul {
+ 		margin: 0;
+	    padding: 0;
+	    list-style: none;
+ 	}
+ 	li {
+	    display: inline-block;
+       /* каскад */
+       a {
+       	text-decoration: none;
+       }
+    }
+   
+
+    a {
+	    text-decoration: none;
+    }
+ }
+
+/* вложенность - как не надо делать - читать сложно*/
+.menu {
+	float: right;
+ul {
+	margin: 0;
+	padding: 0;
+	li {
+		display: inline-block;
+		a {
+			text-decoration: none;
+		}
+	}
+  }
+}
+
+/*символ - & - для длинного класса
+у него белый цвет, при hover - нужно сделать черный*/
+/* - & - принцип обычный, он заменяет своего родителя*/
+.description {
+	color: #fff;
+	&:hover {
+		color: #000;
+	}
+}
+
+.tools {
+	&-description {
+		text-align: left;
+	}
+	&-item {
+		float: left;
+	}
+}
+
+/* - &.item - эти два класса идут слитно и мы можем задавать,
+ что у них меняются свойства при определенных событиях когда к
+ классу .tools присоединяется класс .item*/
+.tools {
+	&.description {
+		text-align: left;
+	}
+	&.item {
+		float: left;
+	}
+}
+
+/* - $ - переменные цвет, шрифт, пишутся над тем объектом в самом верху*/
+$top-color: #fd12cc;
+$top-font: 'lato', sans-serif;
+
+.description {
+	color: $top-color;
+	&:hover {
+		color: #000;
+		font-family: $top-font;
+	}
+}
+
+/* для свойств которые постоянно повторяются - % -
+те свойства которые дубоируются в CSS - не дублируются, не делает CSS большим*/
+
+%name-item {
+	font-size: 22px;
+	padding: 10px;
+	border-color: $top-color;
+}
+/*перечисляет свойства через запятую */
+/* у элементов отличаются только цвета*/
+.item-1 {
+    color: #ccc;
+    @extend %name-item;
+}
+.item-2 {
+    color: #fff;
+    @extend %name-item;
+}
+.item-3 {
+    color: #000;
+    @extend %name-item;
+}
+
+/* в фоне нужно задать полупрозрачность, используем rgba  */
+
+
+%name-element {
+	font-size: 22px;
+	padding: 10px;
+	border-color: rgba(#12dc31, .9); /* можно и переменную впихнуть*/
+}
+
+.element {
+    @extend %name-element;
+}

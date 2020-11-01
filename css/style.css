@@ -1,0 +1,124 @@
+@charset "UTF-8";
+.test {
+  text-align: center;
+}
+
+/* Вложенность - без препроцессора*/
+.menu {
+  float: right;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu a {
+  text-decoration: none;
+}
+
+/* Вложенность - с препроцессором*/
+.menu {
+  float: right;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menu li {
+  display: inline-block;
+  /* каскад */
+}
+.menu li a {
+  text-decoration: none;
+}
+.menu a {
+  text-decoration: none;
+}
+
+/* вложенность - как не надо делать - читать сложно*/
+.menu {
+  float: right;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+.menu ul li {
+  display: inline-block;
+}
+.menu ul li a {
+  text-decoration: none;
+}
+
+/*символ - & - для длинного класса
+у него белый цвет, при hover - нужно сделать черный*/
+/* - & - принцип обычный, он заменяет своего родителя*/
+.description {
+  color: #fff;
+}
+.description:hover {
+  color: #000;
+}
+
+.tools-description {
+  text-align: left;
+}
+.tools-item {
+  float: left;
+}
+
+/* - &.item - эти два класса идут слитно и мы можем задавать,
+ что у них меняются свойства при определенных событиях когда к
+ классу .tools присоединяется класс .item*/
+.tools.description {
+  text-align: left;
+}
+.tools.item {
+  float: left;
+}
+
+/* - $ - переменные цвет, шрифт, пишутся над тем объектом в самом верху*/
+.description {
+  color: #fd12cc;
+}
+.description:hover {
+  color: #000;
+  font-family: "lato", sans-serif;
+}
+
+/* для свойств которые постоянно повторяются - % -
+те свойства которые дубоируются в CSS - не дублируются, не делает CSS большим*/
+.item-1, .item-2, .item-3 {
+  font-size: 22px;
+  padding: 10px;
+  border-color: #fd12cc;
+}
+
+/*перечисляет свойства через запятую */
+/* у элементов отличаются только цвета*/
+.item-1 {
+  color: #ccc;
+}
+
+.item-2 {
+  color: #fff;
+}
+
+.item-3 {
+  color: #000;
+}
+
+/* в фоне нужно задать полупрозрачность, используем rgba  */
+.element {
+  font-size: 22px;
+  padding: 10px;
+  border-color: rgba(18, 220, 49, 0.9);
+  /* можно и переменную впихнуть*/
+}
